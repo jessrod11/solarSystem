@@ -29,3 +29,11 @@ body {
     border: 2px solid white;
 
 }
+
+.search-container {
+    width: 30%;
+    position: absolute;
+    top: 9%;
+    left: 59%;
+    transform: translate(-50%, -50%);
+}
