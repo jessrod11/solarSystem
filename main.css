@@ -1,5 +1,9 @@
-body {
-    background-color: blue;
+body { 
+    background-image: url('http://www.cosmotography.com/images/close_new_m101.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%; 
+    color: white;
 }
 
 .title {
