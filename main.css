@@ -4,8 +4,28 @@ body {
     background-attachment: fixed;
     background-position: 50% 50%; 
     color: white;
+    font-family: 'Sigmar One', cursive;
+    height: 100vh;
 }
 
 .title {
     text-align: center;
+}
+
+#planet-container {
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+    border: 4px double white;
+    
+}
+
+.card-container {
+    margin: 1%;
+    padding: 3%;
+    width: 330px;
+    border: 2px solid white;
+
 }
