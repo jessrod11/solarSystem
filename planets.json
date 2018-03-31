@@ -6,7 +6,7 @@
         "description": "Earth is the third planet from the Sun and the only object in the Universe known to harbor life. According to radiometric dating and other sources of evidence, Earth formed over 4.5 billion years ago. Earth's gravity interacts with other objects in space, especially the Sun and the Moon, Earth's only natural satellite. Earth revolves around the Sun in 365.26 days, a period known as an Earth year. During this time, Earth rotates about its axis about 366.26 times.",    
         "isGasPlanet": false,    
         "numberOfMoons": "1",    
-        "nameOfLargestMoon": "Umm... The Moon?!"   
+        "nameOfLargestMoon": "Umm... The Moon oh... wait. My bad. Luna or Selene!"   
     },
     {
         "name": "Mars",
@@ -18,7 +18,7 @@
     },
     {
         "name": "Saturn",
-        "imageUrl": "https://solarsystem.nasa.gov/system/stellar_items/image_files/38_saturn_1600x900.jpg",    
+        "imageUrl": "http://www.tecnoandroid.it/wp-content/uploads/2016/06/occhi_su_saturno.jpg",
         "description": "Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has only one-eighth the average density of Earth, but with its larger volume Saturn is over 95 times more massive.Saturn is named after the Roman god of agriculture; its astronomical symbol (♄) represents the god's sickle.",    
         "isGasPlanet": true,    
         "numberOfMoons": "53",    
