@@ -19,6 +19,7 @@ const cardHolder = document.getElementsByClassName('card-container');
 const planetPics = document.getElementsByClassName('planetPics');
 const planetNames = document.getElementsByClassName('planetNames');
 
+
 const hideImage = () => {
     for (let i=0; i<planetPics.length; i++){
         planetPics[i].classList.add('hide');
