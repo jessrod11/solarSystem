@@ -1,11 +1,13 @@
 body { 
-    background-image: url('http://www.cosmotography.com/images/close_new_m101.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: 50% 50%; 
-    color: white;
+    background-image: url('https://3bonlp1aiidtbao4s10xacvn-wpengine.netdna-ssl.com/wp-content/uploads/2018/02/eyeball-exoplanets.jpg');
     font-family: 'Sigmar One', cursive;
     height: 100vh;
+    color: white;
+}
+
+img {
+    width: 100%;
+    border: 2px solid white;
 }
 
 .title {
@@ -18,16 +20,12 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
-    border: 4px double white;
-    
 }
 
 .card-container {
     margin: 1%;
     padding: 3%;
     width: 330px;
-    border: 2px solid white;
-
 }
 
 .search-container {
@@ -36,4 +34,12 @@ body {
     top: 9%;
     left: 59%;
     transform: translate(-50%, -50%);
+}
+
+.hide {
+    display:  none;
+}
+
+.displayIt {
+    display: initial;
 }
