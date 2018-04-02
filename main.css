@@ -7,7 +7,12 @@ body {
 
 img {
     width: 100%;
+}
+
+.planetPics {
+    width: 100%;
     border: 2px solid white;
+
 }
 
 .title {
@@ -37,9 +42,21 @@ img {
 }
 
 .hide {
-    display:  none;
+    display: none;
 }
 
 .displayIt {
     display: initial;
+}
+
+.new-card {
+    margin: 1%;
+    padding: 3%;
+    width: 330px;
+    border: 2px solid white;
+    background-color: black;
+}
+
+.button{
+    margin-left: 5%;
 }
