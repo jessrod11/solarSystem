@@ -1,3 +1,13 @@
+const cardHolder = document.getElementsByClassName('card-container');
+const planetPics = document.getElementsByClassName('planetPics');
+const planetNames = document.getElementsByClassName('planetNames');
+const newCardDiv = document.getElementsByClassName('new-card');
+const button = document.getElementsByClassName('button');
+
+const pageLoad = () => {
+    startApplication();
+};
+
 const printToDom = (domString, divId) => {
     document.getElementById(divId).innerHTML = domString;
 };
@@ -21,18 +31,13 @@ const newDom = (cards) => {
         newDomString += `<h1>${planets.name}</h1>`;
         newDomString += `<img src="${planets.imageUrl}">`;
         newDomString += `<p>${planets.description}</p>`;
-        newDomString += `<p>${planets.numberOfMoons}</p>`;
-        newDomString += `<p>${planets.nameOfLargestMoon}</p>`;
+        newDomString += `<h2>Number of Moons: ${planets.numberOfMoons}</h2>`;
+        newDomString += `<h2>Name of Largest Moon: ${planets.nameOfLargestMoon}</h2>`;
         newDomString += `</div>`;
-    })
-       
+    });
     printToDom(newDomString, 'planet-container');
+    buttonEvent();
 };
-
-const cardHolder = document.getElementsByClassName('card-container');
-const planetPics = document.getElementsByClassName('planetPics');
-const planetNames = document.getElementsByClassName('planetNames');
-const newCardDiv = document.getElementsByClassName('new-card');
 
 const hideImage = () => {
     for (let i=0; i<planetPics.length; i++){
@@ -74,19 +79,26 @@ const backToNormal = () => {
         };
     };
 
-    const hideContainer = () => {
-        for (let e=0; e<newCardDiv; e++){
-            newCardDiv[e].classList.add('hide');
-        };
-    };
 
     const onePlanet = () => {
         for (let w=0; w<cardHolder.length; w++){
             cardHolder[w].addEventListener('click', (event)=>{
                 console.log('click',event);
-                // if(event.target.localName === 'img'){
-                //     newDom();
-                // }
+                if(event.target.localName === 'img'){
+                    runNextCode();
+                }
+            })
+        }
+    }
+
+    const buttonEvent = () => {
+        for(let e=0; e<button.length; e++){
+            button[e].addEventListener('click', (event)=>{
+                console.log('button event', event);
+                if(event.target.className === 'button'){
+                    pageLoad();
+                }
+                
             })
         }
     }
@@ -107,7 +119,6 @@ function executeWhenPageLoads (){
 function executeNextCycle (){
     const data = JSON.parse(this.responseText);
     newDom(data.planets);
-    hideContainer();
 };
 
 
@@ -116,7 +127,7 @@ const startApplication = () => {
     myRequest.addEventListener('load', executeWhenPageLoads);
     myRequest.addEventListener('error', executeWhenCodeFails);
     myRequest.open('GET', 'planets.json');
-    myRequest.send();
+    myRequest.send(executeWhenPageLoads);
 };
 
 const runNextCode = () => {
@@ -126,6 +137,4 @@ const runNextCode = () => {
     myRequest.open('GET', 'planets.json');
     myRequest.send();
 };
-
 startApplication();
-runNextCode();

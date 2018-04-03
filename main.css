@@ -17,6 +17,7 @@ img {
 
 .title {
     text-align: center;
+    font-size: 4em;
 }
 
 #planet-container {
@@ -34,10 +35,10 @@ img {
 }
 
 .search-container {
-    width: 30%;
+    width: 28%;
     position: absolute;
-    top: 9%;
-    left: 59%;
+    top: 19%;
+    left: 57%;
     transform: translate(-50%, -50%);
 }
 
@@ -59,4 +60,6 @@ img {
 
 .button{
     margin-left: 5%;
+    color: red;
+    background-color: transparent;
 }
