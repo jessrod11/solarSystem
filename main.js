@@ -3,6 +3,20 @@ const planetPics = document.getElementsByClassName('planetPics');
 const planetNames = document.getElementsByClassName('planetNames');
 const newCardDiv = document.getElementsByClassName('new-card');
 const button = document.getElementsByClassName('button');
+const inputField = document.getElementById('input-field');
+
+const searchInput = () => {
+    inputField.addEventListener('keypress', (event)=>{
+        console.log('keypress', event);
+        if (event.key === 'Enter'){
+            let text= inputField.value;
+            const results = planets.filter((thing)=>{
+                return thing.name.indexOf(text)>-1;
+            })
+            newDom(results);
+        };
+    });
+}
 
 const pageLoad = () => {
     startApplication();
@@ -79,7 +93,6 @@ const backToNormal = () => {
         };
     };
 
-
     const onePlanet = () => {
         for (let w=0; w<cardHolder.length; w++){
             cardHolder[w].addEventListener('click', (event)=>{
@@ -87,7 +100,7 @@ const backToNormal = () => {
                 if(event.target.localName === 'img'){
                     runNextCode();
                 }
-            })
+            });
         }
     }
 
@@ -114,20 +127,20 @@ function executeWhenPageLoads (){
     showImage();
     backToNormal();
     onePlanet();
+    searchInput();
 };
 
 function executeNextCycle (){
     const data = JSON.parse(this.responseText);
-    newDom(data.planets);
+    newDom(data.planets);  
 };
-
 
 const startApplication = () => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener('load', executeWhenPageLoads);
     myRequest.addEventListener('error', executeWhenCodeFails);
     myRequest.open('GET', 'planets.json');
-    myRequest.send(executeWhenPageLoads);
+    myRequest.send();
 };
 
 const runNextCode = () => {

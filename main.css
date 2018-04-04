@@ -29,6 +29,7 @@ img {
 }
 
 .card-container {
+    font-size: 2em;
     margin: 1%;
     padding: 3%;
     width: 330px;
