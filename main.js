@@ -1,22 +1,12 @@
+let selectedImg = '';
+
 const cardHolder = document.getElementsByClassName('card-container');
 const planetPics = document.getElementsByClassName('planetPics');
 const planetNames = document.getElementsByClassName('planetNames');
 const newCardDiv = document.getElementsByClassName('new-card');
 const button = document.getElementsByClassName('button');
 const inputField = document.getElementById('input-field');
-
-const searchInput = () => {
-    inputField.addEventListener('keypress', (event)=>{
-        console.log('keypress', event);
-        if (event.key === 'Enter'){
-            let text= inputField.value;
-            const results = planets.filter((thing)=>{
-                return thing.name.indexOf(text)>-1;
-            })
-            newDom(results);
-        };
-    });
-}
+const picIndex = document.getElementById('pic${planets.indexOf}');
 
 const pageLoad = () => {
     startApplication();
@@ -41,9 +31,10 @@ const newDom = (cards) => {
     let newDomString = '';
     cards.forEach((planets)=>{
         newDomString += `<div class="new-card">`;
+        // newDomString += `<div class="new-card hide">`;
         newDomString += `<button class="button">X</button>`;
-        newDomString += `<h1>${planets.name}</h1>`;
-        newDomString += `<img src="${planets.imageUrl}">`;
+        newDomString += `<h1 class="new-name">${planets.name}</h1>`;
+        newDomString += `<img id="pic${planets.indexOf}" src="${planets.imageUrl}">`;
         newDomString += `<p>${planets.description}</p>`;
         newDomString += `<h2>Number of Moons: ${planets.numberOfMoons}</h2>`;
         newDomString += `<h2>Name of Largest Moon: ${planets.nameOfLargestMoon}</h2>`;
@@ -93,11 +84,11 @@ const backToNormal = () => {
         };
     };
 
-    const onePlanet = () => {
+    const onePlanet = (cards) => {
         for (let w=0; w<cardHolder.length; w++){
             cardHolder[w].addEventListener('click', (event)=>{
                 console.log('click',event);
-                if(event.target.localName === 'img'){
+                if (event.target.localName === 'img'){
                     runNextCode();
                 }
             });
@@ -150,4 +141,5 @@ const runNextCode = () => {
     myRequest.open('GET', 'planets.json');
     myRequest.send();
 };
-startApplication();
+
+startApplication ();
