@@ -1,4 +1,16 @@
-console.log('Stix');
+let selectedImg = '';
+
+const cardHolder = document.getElementsByClassName('card-container');
+const planetPics = document.getElementsByClassName('planetPics');
+const planetNames = document.getElementsByClassName('planetNames');
+const newCardDiv = document.getElementsByClassName('new-card');
+const button = document.getElementsByClassName('button');
+const inputField = document.getElementById('input-field');
+const picIndex = document.getElementById('pic${planets.indexOf}');
+
+const pageLoad = () => {
+    startApplication();
+};
 
 const printToDom = (domString, divId) => {
     document.getElementById(divId).innerHTML = domString;
@@ -15,10 +27,22 @@ const buildDomString = (planetArray) => {
     printToDom(domString, 'planet-container');
 };
 
-const cardHolder = document.getElementsByClassName('card-container');
-const planetPics = document.getElementsByClassName('planetPics');
-const planetNames = document.getElementsByClassName('planetNames');
-
+const newDom = (cards) => {
+    let newDomString = '';
+    cards.forEach((planets)=>{
+        newDomString += `<div class="new-card">`;
+        // newDomString += `<div class="new-card hide">`;
+        newDomString += `<button class="button">X</button>`;
+        newDomString += `<h1 class="new-name">${planets.name}</h1>`;
+        newDomString += `<img id="pic${planets.indexOf}" src="${planets.imageUrl}">`;
+        newDomString += `<p>${planets.description}</p>`;
+        newDomString += `<h2>Number of Moons: ${planets.numberOfMoons}</h2>`;
+        newDomString += `<h2>Name of Largest Moon: ${planets.nameOfLargestMoon}</h2>`;
+        newDomString += `</div>`;
+    });
+    printToDom(newDomString, 'planet-container');
+    buttonEvent();
+};
 
 const hideImage = () => {
     for (let i=0; i<planetPics.length; i++){
@@ -27,26 +51,21 @@ const hideImage = () => {
 };
 
 const showMe = (e) => {
-    e.target.nextSibling.classList.remove('hide');
+    e.target.lastChild.classList.remove('hide');
 }
 
 const hideTitle = (e) => {
-    e.target.classList.add('hide');
+    e.target.firstChild.classList.add('hide');
 };
-
-const removeImg = (e) => {
-
-}
 
 const addTitle = (e) => {
     e.target.firstChild.classList.remove('hide');
-
 }
 
 const showImage = () => {
-    for (let m=0; m < planetNames.length; m++){
-        planetNames[m].addEventListener('mouseover', (event)=> {
-            if(event.target.className === 'planetNames'){
+    for (let m=0; m < cardHolder.length; m++){
+        cardHolder[m].addEventListener('mouseenter', (event)=> {
+            if(event.target.className === 'card-container'){
                 showMe(event);
                 hideTitle(event);
             } 
@@ -62,6 +81,29 @@ const backToNormal = () => {
                 hideImage(event);
                 }
             });
+        };
+    };
+
+    const onePlanet = (cards) => {
+        for (let w=0; w<cardHolder.length; w++){
+            cardHolder[w].addEventListener('click', (event)=>{
+                console.log('click',event);
+                if (event.target.localName === 'img'){
+                    runNextCode();
+                }
+            });
+        }
+    }
+
+    const buttonEvent = () => {
+        for(let e=0; e<button.length; e++){
+            button[e].addEventListener('click', (event)=>{
+                console.log('button event', event);
+                if(event.target.className === 'button'){
+                    pageLoad();
+                }
+                
+            })
         }
     }
 
@@ -75,8 +117,14 @@ function executeWhenPageLoads (){
     hideImage();
     showImage();
     backToNormal();
+    onePlanet();
+    searchInput();
 };
 
+function executeNextCycle (){
+    const data = JSON.parse(this.responseText);
+    newDom(data.planets);  
+};
 
 const startApplication = () => {
     let myRequest = new XMLHttpRequest();
@@ -86,4 +134,12 @@ const startApplication = () => {
     myRequest.send();
 };
 
-startApplication();
+const runNextCode = () => {
+    let myRequest = new XMLHttpRequest();
+    myRequest.addEventListener('load', executeNextCycle);
+    myRequest.addEventListener('error', executeWhenCodeFails);
+    myRequest.open('GET', 'planets.json');
+    myRequest.send();
+};
+
+startApplication ();

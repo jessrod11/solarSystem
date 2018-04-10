@@ -7,11 +7,17 @@ body {
 
 img {
     width: 100%;
+}
+
+.planetPics {
+    width: 100%;
     border: 2px solid white;
+
 }
 
 .title {
     text-align: center;
+    font-size: 4em;
 }
 
 #planet-container {
@@ -23,23 +29,38 @@ img {
 }
 
 .card-container {
+    font-size: 1em;
     margin: 1%;
     padding: 3%;
     width: 330px;
 }
 
 .search-container {
-    width: 30%;
+    width: 28%;
     position: absolute;
-    top: 9%;
-    left: 59%;
+    top: 19%;
+    left: 57%;
     transform: translate(-50%, -50%);
 }
 
 .hide {
-    display:  none;
+    display: none;
 }
 
 .displayIt {
     display: initial;
+}
+
+.new-card {
+    margin: 1%;
+    padding: 3%;
+    width: 330px;
+    border: 2px solid white;
+    background-color: black;
+}
+
+.button{
+    margin-left: 5%;
+    color: red;
+    background-color: transparent;
 }
