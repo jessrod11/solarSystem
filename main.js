@@ -6,23 +6,18 @@ const planetNames = document.getElementsByClassName('planetNames');
 const newCardDiv = document.getElementsByClassName('new-card');
 const button = document.getElementsByClassName('button');
 const inputField = document.getElementById('input-field');
-const picIndex = document.getElementById('pic${planets.indexOf}');
 
-const searchField = (planet) => {
-
-    inputField.addEventListener('keypress', function (event) {
-        console.log("event", event);
-        if (event.key === 'Enter') {
-            var txt = inputField.value;
-            //1. filter planets array
-            var results = planets.filter(function (thing) {
-                console.log("filter thing", thing);
-                return thing.name.indexOf(txt) > -1;
+const searchField = (planetArray) => {
+    inputField.addEventListener('keypress', (e)=>{
+        if(e.key === 'Enter'){
+            let text = inputField.value;
+            let results = planetArray.filter((thing) => {
+                return thing.name.indexOf(text) >-1;
             })
             buildDomString(results);
         }
     })
-}
+};
 
 const pageLoad = () => {
     startApplication();
@@ -123,7 +118,6 @@ const clickOneCard = () => {
 const buttonEvent = () => {
     for (let e = 0; e < button.length; e++) {
         button[e].addEventListener('click', (event) => {
-            console.log('button event', event);
             if (event.target.className === 'button') {
                 pageLoad();
             }
@@ -142,7 +136,7 @@ function executeWhenPageLoads() {
     showImage();
     backToNormal();
     clickOneCard();
-    searchField();
+    searchField(data.planets);
 };
 
 const startApplication = () => {

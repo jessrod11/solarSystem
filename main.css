@@ -24,7 +24,7 @@ img {
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
 }
 
@@ -35,13 +35,6 @@ img {
     width: 330px;
 }
 
-.search-container {
-    width: 28%;
-    position: absolute;
-    top: 19%;
-    left: 57%;
-    transform: translate(-50%, -50%);
-}
 
 .hide {
     display: none;
@@ -51,10 +44,11 @@ img {
     display: initial;
 }
 
-.new-card {
+#new-card {
+    display: inline-table;
     margin: 1%;
     padding: 3%;
-    width: 330px;
+    width: 25%;
     border: 2px solid white;
     background-color: black;
 }
