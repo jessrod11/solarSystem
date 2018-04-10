@@ -8,6 +8,22 @@ const button = document.getElementsByClassName('button');
 const inputField = document.getElementById('input-field');
 const picIndex = document.getElementById('pic${planets.indexOf}');
 
+const searchField = (planet) => {
+
+    inputField.addEventListener('keypress', function (event) {
+        console.log("event", event);
+        if (event.key === 'Enter') {
+            var txt = inputField.value;
+            //1. filter planets array
+            var results = planets.filter(function (thing) {
+                console.log("filter thing", thing);
+                return thing.name.indexOf(txt) > -1;
+            })
+            buildDomString(results);
+        }
+    })
+}
+
 const pageLoad = () => {
     startApplication();
 };
@@ -126,6 +142,7 @@ function executeWhenPageLoads() {
     showImage();
     backToNormal();
     clickOneCard();
+    searchField();
 };
 
 const startApplication = () => {

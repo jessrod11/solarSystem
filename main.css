@@ -64,3 +64,9 @@ img {
     color: red;
     background-color: transparent;
 }
+
+#input-field {
+    position: relative;
+    display: block;
+    margin : 0 auto;
+}
