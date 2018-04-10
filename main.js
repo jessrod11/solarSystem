@@ -21,25 +21,40 @@ const buildDomString = (planetArray) => {
     planetArray.forEach((planets)=>{
         domString += `<div class="card-container">`;
         domString +=    `<h1 class="planetNames">${planets.name}</h1>`;
-        domString +=    `<img class="planetPics" src= ${planets.imageUrl}>`;
+        domString +=    `<img class="planetPics" data-img-id=${planets.id} src= ${planets.imageUrl}>`;
         domString += `</div>`;
     })
     printToDom(domString, 'planet-container');
 };
 
-const newDom = (cards) => {
+const selectImg = (e) => {
+    selectedImg = e.target.dataset.imgId;
+    let myRequest = new XMLHttpRequest();
+    myRequest.addEventListener('load', executeNextCycle);
+    myRequest.addEventListener('error', executeWhenCodeFails);
+    myRequest.open('GET', 'planets.json');
+    myRequest.send();
+
+    function executeNextCycle() {
+        const data = JSON.parse(this.responseText).planets;
+        data.forEach((planet) => {
+            if (planet.id === selectedImg) {
+                newDom(planet);
+            }
+        })
+    };
+}
+
+const newDom = (planet) => {
     let newDomString = '';
-    cards.forEach((planets)=>{
-        newDomString += `<div class="new-card">`;
-        // newDomString += `<div class="new-card hide">`;
+        newDomString += `<div id="new-card">`;
         newDomString += `<button class="button">X</button>`;
-        newDomString += `<h1 class="new-name">${planets.name}</h1>`;
-        newDomString += `<img id="pic${planets.indexOf}" src="${planets.imageUrl}">`;
-        newDomString += `<p>${planets.description}</p>`;
-        newDomString += `<h2>Number of Moons: ${planets.numberOfMoons}</h2>`;
-        newDomString += `<h2>Name of Largest Moon: ${planets.nameOfLargestMoon}</h2>`;
+        newDomString += `<h1 class="new-name">${planet.name}</h1>`;
+        newDomString += `<img id="pic${planet.indexOf}" src="${planet.imageUrl}">`;
+        newDomString += `<p>${planet.description}</p>`;
+        newDomString += `<h2>Number of Moons: ${planet.numberOfMoons}</h2>`;
+        newDomString += `<h2>Name of Largest Moon: ${planet.nameOfLargestMoon}</h2>`;
         newDomString += `</div>`;
-    });
     printToDom(newDomString, 'planet-container');
     buttonEvent();
 };
@@ -84,17 +99,11 @@ const backToNormal = () => {
         };
     };
 
-    const onePlanet = (cards) => {
-        for (let w=0; w<cardHolder.length; w++){
-            cardHolder[w].addEventListener('click', (event)=>{
-                console.log('click',event);
-                if (event.target.localName === 'img'){
-                    runNextCode();
-                }
-            });
-        }
+const clickOneCard = () => {
+    for (let w = 0; w < cardHolder.length; w++) {
+        cardHolder[w].addEventListener('click', selectImg);
     }
-
+};
     const buttonEvent = () => {
         for(let e=0; e<button.length; e++){
             button[e].addEventListener('click', (event)=>{
@@ -106,7 +115,6 @@ const backToNormal = () => {
             })
         }
     }
-
 function executeWhenCodeFails() {
     console.log('What happened, Stix?!');
 };
@@ -117,26 +125,12 @@ function executeWhenPageLoads (){
     hideImage();
     showImage();
     backToNormal();
-    onePlanet();
-    searchInput();
-};
-
-function executeNextCycle (){
-    const data = JSON.parse(this.responseText);
-    newDom(data.planets);  
+    clickOneCard();
 };
 
 const startApplication = () => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener('load', executeWhenPageLoads);
-    myRequest.addEventListener('error', executeWhenCodeFails);
-    myRequest.open('GET', 'planets.json');
-    myRequest.send();
-};
-
-const runNextCode = () => {
-    let myRequest = new XMLHttpRequest();
-    myRequest.addEventListener('load', executeNextCycle);
     myRequest.addEventListener('error', executeWhenCodeFails);
     myRequest.open('GET', 'planets.json');
     myRequest.send();
