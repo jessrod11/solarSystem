@@ -6,7 +6,7 @@ This solar system assignment was created to showcase our ability to grab data fr
 
 
 ## Screenshot
-![Webpage](https://raw.githubusercontent.com/jessrod11/html-css-101/master/screenshots/screenshot.png)
+![Webpage](https://raw.githubusercontent.com/jessrod11/solarSystem/master/screenshot/screenshot.png)
 
 
 ## How to Run
