@@ -6,7 +6,7 @@ This solar system assignment was created to showcase our ability to grab data fr
 
 
 ## Screenshot
-![gif](https://gfycat.com/gifs/detail/ImmaterialPessimisticFritillarybutterfly)
+![Webpage](https://raw.githubusercontent.com/jessrod11/html-css-101/master/screenshots/screenshot.png)
 
 
 ## How to Run
